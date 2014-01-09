@@ -45,9 +45,15 @@ There is a line something like: "Starting OWIN at http://127.255.0.0:81"
 (If compute emulator logging works...)
 Copy the address and open it with web browser.
 (...or you can deploy this to Windows Azure)
+![StartInstructions.jpg][2]
+
 
 Sample HTML-pages are just HTML5 with jQuery and Knockout.js
 They are deployed from the wwwroot.zip -file.
 
-   [1]: https://raw.github.com/Thorium/CatVsDog/master/Architecture.jpg
+![Screenshot.jpg][3]
+
+   [1]: https://raw.github.com/Thorium/CatVsDog/master/specifications/Architecture.jpg
+   [2]: https://raw.github.com/Thorium/CatVsDog/master/specifications/StartInstructions.jpg
+   [3]: https://raw.github.com/Thorium/CatVsDog/master/specifications/Screenshot.jpg
    
