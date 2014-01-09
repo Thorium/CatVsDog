@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="OwinWorkerRole" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-10.2.2">
+  <WorkerRole name="OwinWorkerRole" vmsize="ExtraSmall">
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+    <Endpoints>
+      <InputEndpoint name="WwwServer" protocol="http" port="80" localPort="80" />
+    </Endpoints>
+    <ConfigurationSettings>
+      <Setting name="TableStorageConnectionString" />
+      <Setting name="BlobStorageConnectionString" />
+    </ConfigurationSettings>
+  </WorkerRole>
+</ServiceDefinition>

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0B458006-07EE-41A7-A51C-9A5F70F92EE2}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77C7BA02-9954-478F-81D8-71025BD48257}"
+	ProjectSection(SolutionItems) = preProject
+		Architecture.vsdx = Architecture.vsdx
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureDeployment", "AzureDeployment\AzureDeployment.ccproj", "{320CEE3F-D1C3-4BF8-976D-4EDF5828C840}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OwinWorkerRole", "OwinWorkerRole\OwinWorkerRole.fsproj", "{8ABBBE9E-948B-4F40-ABCB-164DBBF784E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{320CEE3F-D1C3-4BF8-976D-4EDF5828C840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320CEE3F-D1C3-4BF8-976D-4EDF5828C840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320CEE3F-D1C3-4BF8-976D-4EDF5828C840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320CEE3F-D1C3-4BF8-976D-4EDF5828C840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABBBE9E-948B-4F40-ABCB-164DBBF784E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABBBE9E-948B-4F40-ABCB-164DBBF784E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABBBE9E-948B-4F40-ABCB-164DBBF784E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABBBE9E-948B-4F40-ABCB-164DBBF784E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
