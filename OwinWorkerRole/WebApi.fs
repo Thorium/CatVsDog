@@ -146,17 +146,7 @@ module WebApi =
         | _,MissingItem -> return request.CreateResponse(HttpStatusCode.BadRequest)
     }
 
-    /// GET Login
-    [<AllowAnonymous>]
-    let getLogin (request: HttpRequestMessage) = async {
-
-        let tempId = 
-            //Has user already logged in?
-            // If user has already logged-in with a different provider, then add this provider to current user id
-            match request.GetOwinContext().Authentication with
-            | AuthenticatedRequest(i, n) -> i.ToString("N")
-            | Denied -> Guid.NewGuid().ToString("N")
-
+    let private addLogin (request: HttpRequestMessage) tempId = async {
         let (time, hash) = generateStamp(tempId)
         let providers = request.GetQueryNameValuePairs() 
                         |> Seq.filter(fun f -> f.Key = "Provider")
@@ -179,6 +169,23 @@ module WebApi =
             auth.Challenge(authProps, authtype.AuthenticationType)
             return request.CreateErrorResponse(HttpStatusCode.Unauthorized, authProps.RedirectUri)
     }
+
+    /// GET Login
+    /// Creates new login for the system
+    [<AllowAnonymous>]
+    let getNewLogin (request: HttpRequestMessage) = addLogin request (Guid.NewGuid().ToString("N"))
+
+    /// GET Login
+    /// If already authenticated, add login to current login
+    [<AllowAnonymous>]
+    let getOrUpdateLogin (request: HttpRequestMessage) =     
+        let tempId = 
+            //Has user already logged in?
+            // If user has already logged-in with a different provider, then add this provider to current user id
+            match request.GetOwinContext().Authentication with
+            | AuthenticatedRequest(i, n) -> i.ToString("N")
+            | Denied -> Guid.NewGuid().ToString("N")
+        addLogin request tempId
 
     // GET LOGON: After login
     [<AllowAnonymous>]
@@ -243,7 +250,7 @@ module WebApi =
             route usersPath (get getUsers <|> post postUser);
             //Current user login can't be directly updated, but Facebook uses POST-verb
             //when logging to Facebook-application, so GET or POST allowed:
-            route "currentUser/login" ( get getLogin <|> post getLogin);
+            route "currentUser/login" ( get getOrUpdateLogin <|> post getOrUpdateLogin);
             route "currentUser/welcome" ( get didLogon );
             route "currentUser/logout" ( get getLogout );
             route "currentUser/userdata" ( get getUserdata );

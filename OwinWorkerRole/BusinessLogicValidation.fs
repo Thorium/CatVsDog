@@ -56,7 +56,7 @@ module BusinessLogicValidation =
                                                                  |dt, UserAction(RoomCreated(_),_) -> true 
                                                                  | _ -> false)
             let ``Is user's turn`` state = 
-                match state.``game history data``.Length with
+                match state.``game history data``.Length+1 with
                 | CatsTurn -> state.catUser = user
                 | DogsTurn -> state.dogUser = user
 

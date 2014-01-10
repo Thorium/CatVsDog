@@ -249,23 +249,23 @@ module SignalRHub =
                         )
 
 
-        member x.RejectInvite(inviterUser:string, inviterId:Guid, roomId:Guid) : unit =
+        member x.RejectInvite(inviterUser:string, inviterId:string, roomId:string) : unit =
             if this.checkAuthPrincipals() then
-                match inviterId |> fetchUserIdentifier, roomId |> fetchRoomIdentifier with
+                match inviterId |> parseGuid |> fetchUserIdentifier, roomId |> parseGuid |> fetchRoomIdentifier with
                 | None, _ | _, None -> ()
                 | Some inviter, Some room ->
 
                     Invitation(RejectedInvitation, room, this.UserId) |> userControl.AddAction this.UserId
                     Invitation(GotRejectedInvitation, room, this.UserId) |> userControl.AddAction inviter
                     (VoteToDeleteRoom, this.UserId) |> UserAction |> roomControl.AddAction room
-
+                    let roomGuid = roomId |> parseGuid
                     //To other:
                     this.Clients.OthersInGroup(inviterUser)?removeInvitation(
-                         ApiInvitation(roomId=roomId, user = this.ApiUser, myRoom=false)) |> doTaskAsync
+                         ApiInvitation(roomId=roomGuid, user = this.ApiUser, myRoom=false)) |> doTaskAsync
 
                     //To self:
                     this.Clients.Group(this.UserId.AgentIdString)?removeInvitation(
-                         ApiInvitation(roomId=roomId, user = ApiUser(id=inviter.AgentIdString, link=(inviter.AgentId |> userPath |> this.getSignalRUri), name=inviter.Name), myRoom=true)) |> doTaskAsync
+                         ApiInvitation(roomId=roomGuid, user = ApiUser(id=inviter.AgentIdString, link=(inviter.AgentId |> userPath |> this.getSignalRUri), name=inviter.Name), myRoom=true)) |> doTaskAsync
 
         member x.UserJoinRoom(acceptedUser : string, acceptedId:Guid, roomid : Guid) : unit = 
             if this.checkAuthPrincipals() then
