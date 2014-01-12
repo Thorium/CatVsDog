@@ -97,8 +97,8 @@ module BusinessLogicValidation =
             let found = victories |> List.exists(findItems)
             found
 
-        let (|CatsWon|_|) = match findVictory cats with | true -> Some() | _ -> None
-        let (|DogsWon|_|) = match findVictory dogs with | true -> Some() | _ -> None
+        let (|CatsWon|_|)() = match findVictory cats with | true -> Some() | _ -> None
+        let (|DogsWon|_|)() = match findVictory dogs with | true -> Some() | _ -> None
 
         //Scores assume that dogs usually wins...
 
