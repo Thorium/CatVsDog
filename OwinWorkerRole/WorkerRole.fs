@@ -64,6 +64,7 @@ module StartConsoleApp =
     // (But then this will be .exe-file instead of dll-file)
     //[<EntryPoint>]
     let main argv = 
+        //let ``console app web server url`` = "https://localhost:443"
         let ``console app web server url`` = "http://localhost:8080"
         applicationDirectory <- @"C:\Users\tuomashie\Documents\GitHub\AzureOwinFSharp\OwinWorkerRole"
         use app =  WebApp.Start<MyWebStartup>(``console app web server url``) 

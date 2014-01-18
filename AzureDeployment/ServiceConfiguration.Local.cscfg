@@ -7,5 +7,11 @@
       <Setting name="TableStorageConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="BlobStorageConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
+    <!-- Check the thumbprint from certificate. Corresponding certificate-file has to be uploaded to Azure with managemet portal: http://www.windowsazure.com/ -->
+    <!--
+    <Certificates>
+      <Certificate name="MySSLCert" thumbprintAlgorithm="sha1" thumbprint="ABC1234567890FFFEEDDCCBBAA1234567890ABC1"/>
+    </Certificates>
+    -->
   </Role>
 </ServiceConfiguration>

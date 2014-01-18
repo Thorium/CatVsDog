@@ -26,11 +26,11 @@ module HashCheck =
             let modulo i = i % (maxValue+1)
             data |> Array.map (Convert.ToInt32 >> modulo)
 
-        let fourArrays = [3; 10; 25; 25] |> List.map randomArray
+        let fourArrays = [5; 10; 25; 25] |> List.map randomArray
         let chars = Array.init length (fun i -> 
             match fourArrays.[0].[i] with
             | 0 -> 48 + fourArrays.[1].[i] //0-9
-            | 1 -> 65 + fourArrays.[2].[i] //A-Z
+            | 1 | 2 -> 65 + fourArrays.[2].[i] //A-Z
             | _ -> 97 + fourArrays.[3].[i] //a-z
             |> (char))
         new string(chars)

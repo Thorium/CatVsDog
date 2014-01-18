@@ -5,11 +5,17 @@
       <Import moduleName="Diagnostics" />
     </Imports>
     <Endpoints>
+      <!--<InputEndpoint name="WwwServer" protocol="https" port="443" localPort="443" certificate="MySSLCert" />-->
       <InputEndpoint name="WwwServer" protocol="http" port="80" localPort="80" />
     </Endpoints>
     <ConfigurationSettings>
       <Setting name="TableStorageConnectionString" />
       <Setting name="BlobStorageConnectionString" />
     </ConfigurationSettings>
+    <!--
+    <Certificates>
+      <Certificate name="MySSLCert" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+    -->
   </WorkerRole>
 </ServiceDefinition>
