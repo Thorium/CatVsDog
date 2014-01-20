@@ -48,6 +48,7 @@ module BusinessLogicValidation =
                     agentState |> List.tryFind(function 
                     |dt, UserAction(UserWonTheGame(_),id) -> true 
                     |dt, UserAction(UserLostTheGame(_),id) -> true 
+                    |dt, ServerAction(UserLostByTimeout) -> true
                     | _ -> false)
                 match hasEndAction with | None -> false | Some _ -> true
             if gameIsOver then return InvalidReason("The game is over.") else
