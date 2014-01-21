@@ -40,12 +40,17 @@ type WorkerRole() =
         // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
 
         let endpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints.["WwwServer"]
+        //let endpointSSL = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints.["SslServer"]
+
         let baseUri = sprintf "%s://%A" endpoint.Protocol endpoint.IPEndpoint
+        //let baseUriSSL = sprintf "%s://%A" endpointSSL.Protocol endpointSSL.IPEndpoint
 
         log ("Starting OWIN server at " + baseUri) "Information"
+        //log ("Starting OWIN SSL server at " + baseUriSSL) "Information"
 
         let options = StartOptions()
         options.Urls.Add(baseUri)
+        //options.Urls.Add(baseUriSSL)
         server <- WebApp.Start<OwinWorkerRole.MyServer.MyWebStartup>(options)
 
         base.OnStart()

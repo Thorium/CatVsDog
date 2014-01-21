@@ -200,7 +200,7 @@ module WebApi =
             let internalClaims = claims.Claims 
                                  |> Seq.filter(fun c -> not <| c.Type.StartsWith("http://schemas.xmlsoap.org/ws/2005/05/identity/claims", StringComparison.Ordinal))
             if not <| internalClaims.Any() then 
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest, "Claims not found")
+                return request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Claims not found")
             else
                 let identity = ClaimsIdentity(internalClaims, "ApplicationCookie")
                 context.Authentication.SignIn(AuthenticationProperties(IsPersistent = true),identity)

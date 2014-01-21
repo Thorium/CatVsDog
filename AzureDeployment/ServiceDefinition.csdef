@@ -5,8 +5,8 @@
       <Import moduleName="Diagnostics" />
     </Imports>
     <Endpoints>
-      <!--<InputEndpoint name="WwwServer" protocol="https" port="443" localPort="443" certificate="MySSLCert" />-->
       <InputEndpoint name="WwwServer" protocol="http" port="80" localPort="80" />
+      <!--InputEndpoint name="SslServer" protocol="https" port="443" localPort="443" certificate="MySSLCert" /-->
     </Endpoints>
     <ConfigurationSettings>
       <Setting name="TableStorageConnectionString" />

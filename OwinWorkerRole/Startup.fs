@@ -214,6 +214,7 @@ module MyServer =
                         | ".png" -> "image/png"
                         | ".gif" -> "image/gif"
                         | ".ico" -> "image/x-icon"
+                        | ".txt" -> "text/plain"
                         | _ -> ""
 
                 // Deploy to Azure Blob:
