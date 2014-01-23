@@ -37,7 +37,10 @@ module RestApi =
         member x.gameStateMessage = gameStateMessage
         member x.lastTurn = lastTurn
         member x.chatMessages = chatMessages
-        member x.allowedMoveTimeInMinutes = moveTimeAllowed
+        member x.remainingTimeSeconds = 
+            let closingTime = lastActionTime.AddMinutes(float(moveTimeAllowed)) - DateTimeOffset.Now
+            let remaining = int(closingTime.TotalSeconds) * 1<seconds> - 5<seconds>
+            if lastTurn>0 && remaining>0<seconds> then remaining else 0<seconds>
         member x.dogUser = dogUser
         member x.catUser = catUser
 

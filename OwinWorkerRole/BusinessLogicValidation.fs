@@ -12,8 +12,9 @@ module BusinessLogicValidation =
         // Actions in room
         actions |> Array.choose (
             function 
-                | dt,UserAction(a, id) -> Some(dt,Some(id), UserAction(a, id)) 
-                | dt,ServerAction(a) -> Some(dt, None, ServerAction(a)) 
+                | dt,UserAction(DoAction(a, b), id) -> Some(dt,Some(id), UserAction(DoAction(a, b), id)) 
+                | dt,ServerAction(a) -> Some(dt, None, ServerAction(a))
+                | dt,_ -> None 
                 )
 
     let fetchRoomRecentState actions =
