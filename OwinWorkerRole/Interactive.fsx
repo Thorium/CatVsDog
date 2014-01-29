@@ -22,8 +22,8 @@ open OwinWorkerRole
 #load "BusinessLogicValidation.fs"
 
 //OWIN part 1
-#r "../packages/Microsoft.Owin.2.0.2/lib/net45/Microsoft.Owin.dll"
-#r "../packages/Microsoft.AspNet.WebApi.Owin.5.0.0/lib/net45/System.Web.Http.Owin.dll"
+#r "../packages/Microsoft.Owin.2.1.0/lib/net45/Microsoft.Owin.dll"
+#r "../packages/Microsoft.AspNet.WebApi.Owin.5.1.0/lib/net45/System.Web.Http.Owin.dll"
 
 #load "HashCheck.fs"
 
@@ -31,7 +31,7 @@ open OwinWorkerRole
 
 //SignalR
 #r "../packages/Newtonsoft.Json.5.0.8/lib/net45/Newtonsoft.Json.dll"
-#r "../packages/Microsoft.AspNet.SignalR.Core.2.0.1/lib/net45/Microsoft.AspNet.SignalR.Core.dll"
+#r "../packages/Microsoft.AspNet.SignalR.Core.2.0.2/lib/net45/Microsoft.AspNet.SignalR.Core.dll"
 
 #load "SignalRHub.fs"
 
@@ -52,15 +52,16 @@ open OwinWorkerRole
 
 // OWIN part 2
 #r "../packages/Owin.1.0/lib/net40/Owin.dll"
-#r "../packages/Microsoft.Owin.Security.Cookies.2.0.2/lib/net45/Microsoft.Owin.Security.Cookies.dll"
-#r "../packages/Microsoft.Owin.Security.Facebook.2.0.2/lib/net45/Microsoft.Owin.Security.Facebook.dll"
-#r "../packages/Microsoft.Owin.Security.MicrosoftAccount.2.0.2/lib/net45/Microsoft.Owin.Security.MicrosoftAccount.dll"
-#r "../packages/Microsoft.Owin.Security.Google.2.0.2/lib/net45/Microsoft.Owin.Security.Google.dll"
-#r "../packages/Microsoft.Owin.Hosting.2.0.2/lib/net45/Microsoft.Owin.Hosting.dll"
-#r "../packages/Microsoft.Owin.Diagnostics.2.0.2/lib/net40/Microsoft.Owin.Diagnostics.dll"
-#r "../packages/Microsoft.Owin.Security.2.0.2/lib/net45/Microsoft.Owin.Security.dll"
-#r "../packages/Microsoft.Owin.Host.HttpListener.2.0.2/lib/net45/Microsoft.Owin.Host.HttpListener.dll"
-//#r "../packages/Microsoft.Owin.Host.SystemWeb.2.0.2/lib/net45/Microsoft.Owin.Host.SystemWeb.dll"
+#r "../packages/Microsoft.Owin.Security.Cookies.2.1.0/lib/net45/Microsoft.Owin.Security.Cookies.dll"
+#r "../packages/Microsoft.Owin.Security.Facebook.2.1.0/lib/net45/Microsoft.Owin.Security.Facebook.dll"
+#r "../packages/Microsoft.Owin.Security.MicrosoftAccount.2.1.0/lib/net45/Microsoft.Owin.Security.MicrosoftAccount.dll"
+#r "../packages/Microsoft.Owin.Security.Google.2.1.0/lib/net45/Microsoft.Owin.Security.Google.dll"
+#r "../packages/Microsoft.Owin.Hosting.2.1.0/lib/net45/Microsoft.Owin.Hosting.dll"
+#r "../packages/Microsoft.Owin.Diagnostics.2.1.0/lib/net40/Microsoft.Owin.Diagnostics.dll"
+#r "../packages/Microsoft.Owin.Security.2.1.0/lib/net45/Microsoft.Owin.Security.dll"
+#r "../packages/Microsoft.Owin.Host.HttpListener.2.1.0/lib/net45/Microsoft.Owin.Host.HttpListener.dll"
+//#r "../packages/Microsoft.Owin.Host.SystemWeb.2.1.0/lib/net45/Microsoft.Owin.Host.SystemWeb.dll"
+
 
 #load "Startup.fs"
 

@@ -99,8 +99,7 @@ module BusinessLogicValidation =
             let found = victories |> List.exists(findItems)
             found
 
-        let (|CatsWon|_|)() = match findVictory cats with | true -> Some() | _ -> None
-        let (|DogsWon|_|)() = match findVictory dogs with | true -> Some() | _ -> None
+
 
         //Scores assume that dogs usually wins...
 
@@ -131,9 +130,33 @@ module BusinessLogicValidation =
     let sendServerEvent() =
         let doSomeMaintenance (agentData:RoomId*Agent<SingleAgent<_>>) =
             let id, agent = agentData
-            let startTime = agent.PostAndReply(TimeCreated)
-            if(startTime.AddMonths(3) < DateTimeOffset.UtcNow) then
-                roomControl.DeleteItem id
+            async {
+                let! startTime = agent.PostAndAsyncReply(TimeCreated)
+                if(startTime.AddMonths(3) < DateTimeOffset.UtcNow) then
+                    roomControl.DeleteItem id
+
+                let! agentState = agent.PostAndAsyncReply(Get)
+
+                // Remove rooms that have been rejected
+                let rejectedRoom =
+                    agentState |> List.exists(function 
+                    |dt, UserAction(VoteToDeleteRoom(_),id) -> true 
+                    | _ -> false)
+                if rejectedRoom then 
+                    roomControl.DeleteItem id
+                else
+                // Clean old ended games:
+                let old (d:DateTimeOffset) = d.AddDays(2.0) < DateTimeOffset.UtcNow
+                if old(startTime) then
+                    let hasOldEndAction =
+                        agentState |> List.exists(function 
+                        |dt, UserAction(UserWonTheGame(_),id) when old(dt) -> true 
+                        |dt, UserAction(UserLostTheGame(_),id) when old(dt) -> true
+                        |dt, ServerAction(UserLostByTimeout) when old(dt) -> true
+                        | _ -> false)
+                    if hasOldEndAction then roomControl.DeleteItem id
+
+            } |> Async.Start
         async {
             while true do
                 do! oncePerFiveMinutes |> ``min to ms`` |> Async.Sleep
