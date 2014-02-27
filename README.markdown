@@ -53,6 +53,8 @@ They are deployed from the wwwroot.zip -file.
 
 ![Screenshot.jpg][3]
 
+[![Build status](https://ci-beta.appveyor.com/api/projects/status/ioegd0awx2a17syx)](https://ci-beta.appveyor.com/project/Thorium/catvsdog)
+
    [1]: https://raw.github.com/Thorium/CatVsDog/master/specifications/Architecture.jpg
    [2]: https://raw.github.com/Thorium/CatVsDog/master/specifications/StartInstructions.jpg
    [3]: https://raw.github.com/Thorium/CatVsDog/master/specifications/Screenshot.jpg
